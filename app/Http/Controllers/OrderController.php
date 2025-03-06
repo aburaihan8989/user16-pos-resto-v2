@@ -33,6 +33,7 @@ class OrderController extends Controller
 
         //get order items by order id
         $orderItems = \App\Models\OrderItem::with('product')->where('order_id', $id)->get();
+        $orderSum = \App\Models\OrderItem::where('order_id', $id)->select(DB::raw('SUM(quantity * total_price) as total'))->value('total');
 
         return view('pages.orders.view', compact('order', 'orderItems'));
     }
