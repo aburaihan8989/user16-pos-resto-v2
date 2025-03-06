@@ -94,8 +94,8 @@
                                                         Minuman
                                                     @elseif ($product->category == 'makanan')
                                                     m   Makanan
-                                                    @elseif ($product->category == 'kuliner')
-                                                        Kuliner
+                                                    @elseif ($product->category == 'other')
+                                                        Other
                                                     @endif
                                                 </td>
                                                 <td>
