@@ -27,9 +27,37 @@
                 </div>
                 <h2 class="section-title">Order Detail</h2>
                 <p class="section-lead">
-                <div>Total Price : Rp. {{ number_format(($order->total_price), 0, ",", ".") }}</div>
+                {{-- <div>Total Price : Rp. {{ number_format(($orderSum), 0, ",", ".") }}</div>
+                <div>Diskon : Rp. {{ number_format(($orderSum - $order->total_price), 0, ",", ".") }}</div>
+                <div>Grand Total : Rp. {{ number_format(($order->total_price), 0, ",", ".") }}</div>
                 <div>Transaction Time : {{ $order->transaction_time }}</div>
-                <div>Total Item : {{ $order->total_item }}</div>
+                <div>Total Item : {{ $order->total_item }}</div> --}}
+
+                <div class="card col-4" id="card-transaction">
+                    <div class="card-body pb-0">
+                        <p class="text-muted">Detail Transaction</p>
+                        <div class="form-group row mb-1">
+                            <div class="col-sm-4">Transaction Time</div>
+                            <div>: {{ $order->transaction_time }}</div>
+                        </div>
+                        <div class="form-group row mb-1">
+                            <div class="col-sm-4">Total Price</div>
+                            <div>: Rp. {{ number_format(($orderSum), 0, ",", ".") }}</div>
+                        </div>
+                        {{-- <div class="form-group row mb-1">
+                            <div class="col-sm-4">Diskon</div>
+                            <div>: Rp. {{ number_format(($orderSum - $order->total_price), 0, ",", ".") }}</div>
+                        </div>
+                        <div class="form-group row mb-1">
+                            <div class="col-sm-4">Grand Total</div>
+                            <div>: Rp. {{ number_format(($order->total_price), 0, ",", ".") }}</div>
+                        </div> --}}
+                        <div class="form-group row">
+                            <div class="col-sm-4">Total Item</div>
+                            <div>: {{ $order->total_item }}</div>
+                        </div>
+                    </div>
+                </div>
 
                 </p>
 
