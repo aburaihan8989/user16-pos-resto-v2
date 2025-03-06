@@ -30,11 +30,12 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = \App\Models\Order::with('kasir')->findOrFail($id);
+        $kasir = \App\Models\User::where('id', $order->kasir_id)->first();
 
         //get order items by order id
         $orderItems = \App\Models\OrderItem::with('product')->where('order_id', $id)->get();
         $orderSum = \App\Models\OrderItem::where('order_id', $id)->select(DB::raw('SUM(quantity * total_price) as total'))->value('total');
 
-        return view('pages.orders.view', compact('order', 'orderItems', 'orderSum'));
+        return view('pages.orders.view', compact('order', 'kasir', 'orderItems', 'orderSum'));
     }
 }
