@@ -66,10 +66,10 @@ class DashboardController extends Controller
         $top_cabang = DB::table('order_items')
             ->leftJoin('orders','orders.id','=','order_items.order_id')
             ->leftJoin('users','users.id','=','orders.kasir_id')
-            ->select('orders.kasir_id','users.name',
+            ->select('users.name',
                 DB::raw('SUM(order_items.quantity) as count'),
                 DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
-            ->groupBy('orders.kasir_id')
+            ->groupBy('users.name')
             ->orderBy('count','desc')
             ->limit(5)
             ->get();
@@ -77,11 +77,11 @@ class DashboardController extends Controller
         $month_cabang = DB::table('order_items')
             ->leftJoin('orders','orders.id','=','order_items.order_id')
             ->leftJoin('users','users.id','=','orders.kasir_id')
-            ->select('orders.kasir_id','users.name',
+            ->select('users.name',
                 DB::raw('SUM(order_items.quantity) as count'),
                 DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
             ->whereDate('order_items.created_at',date('m'))
-            ->groupBy('orders.kasir_id')
+            ->groupBy('users.name')
             ->orderBy('count','desc')
             ->limit(5)
             ->get();
