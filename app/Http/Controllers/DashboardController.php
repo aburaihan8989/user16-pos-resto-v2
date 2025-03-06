@@ -63,6 +63,29 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
+        $top_cabang = DB::table('order_items')
+            ->leftJoin('orders','orders.id','=','order_items.order_id')
+            ->leftJoin('users','users.id','=','orders.kasir_id')
+            ->select('orders.kasir_id','users.name',
+                DB::raw('SUM(order_items.quantity) as count'),
+                DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
+            ->groupBy('orders.kasir_id')
+            ->orderBy('count','desc')
+            ->limit(5)
+            ->get();
+
+        $month_cabang = DB::table('order_items')
+            ->leftJoin('orders','orders.id','=','order_items.order_id')
+            ->leftJoin('users','users.id','=','orders.kasir_id')
+            ->select('orders.kasir_id','users.name',
+                DB::raw('SUM(order_items.quantity) as count'),
+                DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
+            ->whereDate('order_items.created_at',date('m'))
+            ->groupBy('orders.kasir_id')
+            ->orderBy('count','desc')
+            ->limit(5)
+            ->get();
+
 
         return view('pages.dashboard', [
             'total_sales'     => $total_sales,
@@ -76,6 +99,8 @@ class DashboardController extends Controller
             'sales_monthly'   => $sales_monthly,
             'produk_kurang'   => $produk_kurang,
             'produk_habis'    => $produk_habis,
+            'top_cabang'      => $top_cabang,
+            'month_cabang'    => $month_cabang,
             'top_sales'       => $top_sales
         ]);
     }

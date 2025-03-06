@@ -161,13 +161,97 @@
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama Produk</th>
-                                            <th scope="col">Terjual</th>
+                                            <th scope="col">Total Terjual</th>
                                             <th scope="col">Total Transaksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no = 1; ?>
                                         @foreach ($top_sales as $item)
+                                            <tr>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->count }} Pcs
+                                                </td>
+                                                <td>
+                                                    Rp. {{ number_format(($item->total), 0, ",", ".") }}
+                                                </td>
+                                            </tr>
+                                            <?php $no++; ?>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Total Sales Produk By Cabang</h4>
+                        </div>
+                        <div class="card-body" style="height: 405px;">
+                            <div class="table-responsive">
+                                <table class="table-striped table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama Cabang</th>
+                                            <th scope="col">Total Terjual</th>
+                                            <th scope="col">Total Transaksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($top_cabang as $item)
+                                            <tr>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->count }} Pcs
+                                                </td>
+                                                <td>
+                                                    Rp. {{ number_format(($item->total), 0, ",", ".") }}
+                                                </td>
+                                            </tr>
+                                            <?php $no++; ?>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>This Month Sales Produk By Cabang</h4>
+                        </div>
+                        <div class="card-body" style="height: 405px;">
+                            <div class="table-responsive">
+                                <table class="table-striped table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama Cabang</th>
+                                            <th scope="col">Total Terjual</th>
+                                            <th scope="col">Total Transaksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($top_cabang as $item)
                                             <tr>
                                                 <td>
                                                     {{ $loop->iteration }}
