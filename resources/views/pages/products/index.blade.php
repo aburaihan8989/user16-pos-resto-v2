@@ -93,7 +93,7 @@
                                                     @if ($product->category == 'minuman')
                                                         Minuman
                                                     @elseif ($product->category == 'makanan')
-                                                    m   Makanan
+                                                        Makanan
                                                     @elseif ($product->category == 'other')
                                                         Other
                                                     @endif
