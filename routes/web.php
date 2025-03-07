@@ -25,4 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('product', \App\Http\Controllers\ProductController::class);
     Route::resource('order', \App\Http\Controllers\OrderController::class);
     Route::resource('stock', \App\Http\Controllers\StockController::class);
+    Route::get('stock-out', 'App\Http\Controllers\StockController@index2')->name('stock-out');
+    Route::get('stock-out-create', 'App\Http\Controllers\StockController@create2')->name('stock-out-create');
+    Route::post('stock-out-post', 'App\Http\Controllers\StockController@store2')->name('stock-out-store');
 });

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Stock Masuk Create')
+@section('title', 'Stock Keluar Create')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -16,19 +16,19 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Create Stock Masuk</h1>
+                <h1>Create Stock Keluar</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('stock.index') }}">Stocks Masuk</a></div>
-                    <div class="breadcrumb-item">Create Stock Masuk</div>
+                    <div class="breadcrumb-item"><a href="{{ route('stock-out') }}">Stocks Keluar</a></div>
+                    <div class="breadcrumb-item">Create Stock Keluar</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Stock Masuk</h2>
+                <h2 class="section-title">Stock Keluar</h2>
 
                 <div class="card">
-                    <form action="{{ route('stock.store') }}" method="POST">
+                    <form action="{{ route('stock-out-store') }}" method="POST">
                         @csrf
                         <div class="card-header">
                             <h4>Input Data</h4>
@@ -70,6 +70,17 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+                            </div>
+                            <div class="from-group">
+                                <div class="form-group">
+                                    <label for="kasir_id">Nama Kasir <span class="text-danger"></span></label>
+                                    <select class="select2 form-control" name="kasir_id" id="kasir_id">
+                                        <option value="" selected disabled>Pilih Nama Kasir</option>
+                                        @foreach(\App\Models\User::where('roles','=','user')->get() as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         {{-- <div class="form-group">
                                 <label>Cost Price</label>

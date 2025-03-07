@@ -115,7 +115,7 @@
                                                         <span class="badge badge-danger">Habis</span>
                                                     @elseif ($product->stock > 0 & $product->stock < $product->std_stock)
                                                         <span class="badge badge-warning">Kurang</span>
-                                                    @elseif ($product->stock > $product->std_stock)
+                                                    @elseif ($product->stock >= $product->std_stock)
                                                         <span class="badge badge-success">Banyak</span>
                                                     @else
                                                     @endif
@@ -149,8 +149,8 @@
 
                                                         <form action="#">
                                                         {{-- <form action="{{ route('product.destroy', $product->id) }}"
-                                                            method="POST" class="ml-2"> --}}
-                                                            {{-- <input type="hidden" name="_method" value="DELETE" />
+                                                            method="POST" class="ml-2">
+                                                            <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}" /> --}}
                                                             <button class="btn btn-sm btn-secondary btn-icon confirm-delete ml-2">

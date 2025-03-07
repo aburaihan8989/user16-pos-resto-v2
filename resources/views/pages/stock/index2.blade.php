@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Stocks Masuk')
+@section('title', 'Stocks Keluar')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,18 +11,18 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Stocks Masuk</h1>
+                <h1>Stocks Keluar</h1>
                 <div class="section-header-button">
                     @if ( auth()->user()->roles == "admin" )
-                        <a href="{{ route('stock.create') }}" class="btn btn-primary">Add Stock Masuk</a>
+                        <a href="{{ route('stock-out-create') }}" class="btn btn-primary">Add Stock Keluar</a>
                     @else
-                        <a href="#" class="btn btn-secondary">Add Stock Masuk</a>
+                        <a href="#" class="btn btn-secondary">Add Stock Keluar</a>
                     @endif
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('stock.index') }}">Stocks Masuk</a></div>
-                    <div class="breadcrumb-item">Stocks Masuk</div>
+                    <div class="breadcrumb-item"><a href="{{ route('stock-out') }}">Stocks Keluar</a></div>
+                    <div class="breadcrumb-item">Stocks Keluar</div>
                 </div>
             </div>
             <div class="section-body">
@@ -31,16 +31,16 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Stocks Masuk</h2>
+                <h2 class="section-title">Stocks Keluar</h2>
                 <p class="section-lead">
-                    You can add Incoming Stocks, view history stocks and more.
+                    You can add Outgoing Stocks, view history stocks and more.
                 </p>
 
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Stocks Masuk</h4>
+                                <h4>Stocks Keluar</h4>
                             </div>
                             <div class="card-body">
                                 {{-- <div class="float-left">
@@ -52,7 +52,7 @@
                                     </select>
                                 </div> --}}
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('stock.index') }}">
+                                    <form method="GET" action="{{ route('stock-out') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search Name" name="transaction_time">
                                             <div class="input-group-append">
@@ -72,7 +72,7 @@
                                             <th>Name</th>
                                             <th>Quantity</th>
                                             <th>Total Price</th>
-                                            <th>Admin Gudang</th>
+                                            <th>Kasir Gerobak</th>
                                             <th>Action</th>
                                         </tr>
                                         <?php $no = 1; ?>
