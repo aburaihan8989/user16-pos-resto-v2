@@ -95,11 +95,11 @@
                                             @if ($user->roles == 'admin') checked @endif>
                                         <span class="selectgroup-button">Admin</span>
                                     </label>
-                                    <label class="selectgroup-item">
+                                    {{-- <label class="selectgroup-item">
                                         <input type="radio" name="roles" value="staff" class="selectgroup-input"
                                             @if ($user->roles == 'staff') checked @endif>
                                         <span class="selectgroup-button">Owner</span>
-                                    </label>
+                                    </label> --}}
                                     <label class="selectgroup-item">
                                         <input type="radio" name="roles" value="user" class="selectgroup-input"
                                             @if ($user->roles == 'user') checked @endif>
