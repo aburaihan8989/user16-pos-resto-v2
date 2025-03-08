@@ -195,7 +195,7 @@
                 <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Total Sales Produk By Cabang</h4>
+                            <h4>Total Sales Produk By Outlet</h4>
                         </div>
                         <div class="card-body" style="height: 405px;">
                             <div class="table-responsive">
@@ -203,7 +203,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Nama Cabang</th>
+                                            <th scope="col">Nama Outlet</th>
                                             <th scope="col">Total Terjual</th>
                                             <th scope="col">Total Transaksi</th>
                                         </tr>
@@ -236,7 +236,7 @@
                 <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>This Month Sales Produk By Cabang</h4>
+                            <h4>This Month Sales Produk By Outlet</h4>
                         </div>
                         <div class="card-body" style="height: 405px;">
                             <div class="table-responsive">
@@ -244,7 +244,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Nama Cabang</th>
+                                            <th scope="col">Nama Outlet</th>
                                             <th scope="col">Total Terjual</th>
                                             <th scope="col">Total Transaksi</th>
                                         </tr>
