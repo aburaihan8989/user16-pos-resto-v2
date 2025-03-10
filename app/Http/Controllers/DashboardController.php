@@ -63,14 +63,14 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        $top_cabang = DB::table('order_items')
+        $total_cabang = DB::table('order_items')
             ->leftJoin('orders','orders.id','=','order_items.order_id')
             ->leftJoin('users','users.id','=','orders.kasir_id')
             ->select('users.name',
                 DB::raw('SUM(order_items.quantity) as count'),
                 DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
             ->groupBy('users.name')
-            ->orderBy('count','desc')
+            ->orderBy('total','desc')
             ->limit(5)
             ->get();
 
@@ -80,11 +80,36 @@ class DashboardController extends Controller
             ->select('users.name',
                 DB::raw('SUM(order_items.quantity) as count'),
                 DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
-            ->whereDate('order_items.created_at',date('m'))
+            ->whereMonth('order_items.created_at',date('m',strtotime("now")))
             ->groupBy('users.name')
-            ->orderBy('count','desc')
+            ->orderBy('total','desc')
             ->limit(5)
             ->get();
+
+        $today_cabang = DB::table('order_items')
+            ->leftJoin('orders','orders.id','=','order_items.order_id')
+            ->leftJoin('users','users.id','=','orders.kasir_id')
+            ->select('users.name',
+                DB::raw('SUM(order_items.quantity) as count'),
+                DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
+            ->whereDate('order_items.created_at',date('Y-m-d',strtotime("today")))
+            ->groupBy('users.name')
+            ->orderBy('total','desc')
+            ->limit(5)
+            ->get();
+
+        $yesterday_cabang = DB::table('order_items')
+            ->leftJoin('orders','orders.id','=','order_items.order_id')
+            ->leftJoin('users','users.id','=','orders.kasir_id')
+            ->select('users.name',
+                DB::raw('SUM(order_items.quantity) as count'),
+                DB::raw('SUM(order_items.quantity * order_items.total_price) as total'))
+            ->whereDate('order_items.created_at',date('Y-m-d',strtotime("yesterday")))
+            ->groupBy('users.name')
+            ->orderBy('total','desc')
+            ->limit(5)
+            ->get();
+
 
 
         return view('pages.dashboard', [
@@ -99,8 +124,10 @@ class DashboardController extends Controller
             'sales_monthly'   => $sales_monthly,
             'produk_kurang'   => $produk_kurang,
             'produk_habis'    => $produk_habis,
-            'top_cabang'      => $top_cabang,
+            'total_cabang'    => $total_cabang,
             'month_cabang'    => $month_cabang,
+            'today_cabang'    => $today_cabang,
+            'yesterday_cabang'    => $yesterday_cabang,
             'top_sales'       => $top_sales
         ]);
     }

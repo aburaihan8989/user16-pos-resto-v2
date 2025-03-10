@@ -195,7 +195,7 @@
                 <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Total Sales Produk By Outlet</h4>
+                            <h4>Total Sales By Outlet</h4>
                         </div>
                         <div class="card-body" style="height: 405px;">
                             <div class="table-responsive">
@@ -210,7 +210,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($top_cabang as $item)
+                                        @foreach ($total_cabang as $item)
                                             <tr>
                                                 <td>
                                                     {{ $loop->iteration }}
@@ -236,7 +236,7 @@
                 <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>This Month Sales Produk By Outlet</h4>
+                            <h4>This Month Sales By Outlet</h4>
                         </div>
                         <div class="card-body" style="height: 405px;">
                             <div class="table-responsive">
@@ -251,7 +251,91 @@
                                     </thead>
                                     <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($top_cabang as $item)
+                                        @foreach ($month_cabang as $item)
+                                            <tr>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->count }} Pcs
+                                                </td>
+                                                <td>
+                                                    Rp. {{ number_format(($item->total), 0, ",", ".") }}
+                                                </td>
+                                            </tr>
+                                            <?php $no++; ?>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Today Sales By Outlet</h4>
+                        </div>
+                        <div class="card-body" style="height: 405px;">
+                            <div class="table-responsive">
+                                <table class="table-striped table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama Outlet</th>
+                                            <th scope="col">Total Terjual</th>
+                                            <th scope="col">Total Transaksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($today_cabang as $item)
+                                            <tr>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->count }} Pcs
+                                                </td>
+                                                <td>
+                                                    Rp. {{ number_format(($item->total), 0, ",", ".") }}
+                                                </td>
+                                            </tr>
+                                            <?php $no++; ?>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Yesterday Sales By Outlet</h4>
+                        </div>
+                        <div class="card-body" style="height: 405px;">
+                            <div class="table-responsive">
+                                <table class="table-striped table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama Outlet</th>
+                                            <th scope="col">Total Terjual</th>
+                                            <th scope="col">Total Transaksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($yesterday_cabang as $item)
                                             <tr>
                                                 <td>
                                                     {{ $loop->iteration }}
