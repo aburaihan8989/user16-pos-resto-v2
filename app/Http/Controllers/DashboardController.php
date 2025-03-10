@@ -37,18 +37,13 @@ class DashboardController extends Controller
             $sales_monthly[] = Order::whereDate('transaction_time','like','%'.date('Y').'-'.$b.'%')->sum('total_price');
         }
 
-        // $top_sales = OrderItem::select('product_id', DB::raw('SUM(quantity) as `count`'))
-        // ->groupBy('product_id')
-        // ->orderBy('count', 'DESC')
-        // ->limit(5)->get();
-
         $top_sales = DB::table('order_items')
             ->leftJoin('products','products.id','=','order_items.product_id')
             ->select('products.name',
                 DB::raw('SUM(order_items.quantity) as count'),
                 DB::raw('SUM(order_items.quantity * products.price) as total'))
             ->groupBy('products.name')
-            ->orderBy('count','desc')
+            ->orderBy('total','desc')
             ->limit(5)
             ->get();
 
