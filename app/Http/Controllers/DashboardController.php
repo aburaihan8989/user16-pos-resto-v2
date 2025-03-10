@@ -50,12 +50,12 @@ class DashboardController extends Controller
         $produk_kurang = DB::table('products')
             ->where('stock', '>', 0)
             ->whereColumn('stock', '<', 'std_stock')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('stock', 'desc')
             ->paginate(5);
 
         $produk_habis = DB::table('products')
             ->where('stock','<=',0)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('stock', 'desc')
             ->paginate(5);
 
         $total_cabang = DB::table('order_items')
